@@ -1,0 +1,25 @@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+<%= form_for(:search, class: 'form-inline', url: events_path, method: :get) do |form| %>
+  <div class="form-group">
+    <%= form.label :date %>
+    <%= form.text_field :date, class: 'form-control', data: { behavior: 'daterangepicker' } %>
+  </div>
+  <%= form.submit "Search", class: 'btn btn-success' %>
+<% end %>
+
+
+
+<script>
+$(function() {
+  $('#search_date').daterangepicker({
+    opens: 'left',
+    format: 'dd/mm/yyyy'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+</script>
